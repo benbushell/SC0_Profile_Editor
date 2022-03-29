@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+
+body {
+  font-family: "Rubik", sans-serif;
+}
+
+.mainContainer {
+  border: 1px solid black;
+  box-shadow: 4px 4px 7px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.header {
+  border-bottom: 1px solid #939393;
+  padding: 10px;
+}
+
+.mid {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  min-height: 100px;
+}
+
+.footer {
+  border-top: 1px solid #939393;
+  padding: 10px;
+}
+
+input[type="file"] {
+  color: rgba(0, 0, 0, 0);
+}
+
+.file {
+  border-bottom: 1px solid #e6e6e6;
+  padding: 6px;
+  color: #606060;
+  font-size: 0.9em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.fileName {
+  cursor: pointer;
+}
+
+.fileOptions {
+  display: flex;
+  align-items: center;
+}
+
+.fileOptions div {
+  margin: 0px 5px;
+}
+
+.unticked {
+  width: 0.4em;
+  height: 0.4em;
+  border: 1px solid;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.ticked {
+  width: 0.4em;
+  height: 0.4em;
+  border: 1px solid;
+  border-radius: 50%;
+  cursor: pointer;
+  background: #606060;
+}
+
+.uncticked:hover {
+  background: #e6e6e6;
+}
+
+.deleteFile {
+  color: #e6e6e6;
+}
+
+.deleteFile:hover {
+  cursor: pointer;
+  color: red;
+}
+
+.importStructures {
+  padding: 20px;
+  flex: 1;
+  margin: 0px 50px;
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  box-sizing: border-box;
+  box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.25);
+}
+
+.editFiles {
+  padding: 20px;
+  flex: 1;
+
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  box-sizing: border-box;
+  box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.25);
+}
+
+.editOptions {
+  display: flex;
+}
+
+.editOptions div {
+  box-shadow: 0.5px 0.5px 4px rgba(0, 0, 0, 0.25);
+  padding: 5px 15px;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.parameterDisplay {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0px;
+}
