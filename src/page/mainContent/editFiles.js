@@ -1,3 +1,6 @@
+import FileSaver, { saveAs } from "file-saver";
+import JSZip from "jszip";
+
 const EditFiles = ({ data, setData, selected }) => {
   const edited = {};
 
@@ -48,7 +51,62 @@ const EditFiles = ({ data, setData, selected }) => {
     }
   };
 
-  const exportFiles = () => {};
+  const exportFiles = () => {
+
+    let zip = new JSZip();
+    let edited = zip.folder("edited");
+
+    for(let file of data){
+      if(selected.includes(file.uid)){
+        let newRaw = [...file.raw]
+        //find length of headers
+        let headerLength = 0
+        for (let line of newRaw) {
+          if (
+            line[0].substring(0, 1) !== "+" &&
+            line[0].substring(0, 1) !== "-"
+          ) {
+            headerLength++
+          } else {
+            break;
+          }
+        }
+
+        //remove headers
+        newRaw.splice(0,headerLength)
+        //console.log(newRaw)
+
+        //add new headers
+        let headerArr = []
+        for(let i in Object.keys(file.header)){
+          headerArr.push([Object.keys(file.header)[i]+'='+Object.values(file.header)[i]])
+        }
+
+        newRaw = [...headerArr,...newRaw]
+
+        for(let line of newRaw){
+          line[0]+="\n"
+        }
+
+        //get filename
+        let fileName = String(parseFloat(file.header.DIST)*1000)+'BK'+'.sc0'
+
+
+        //setup zip export
+
+        var blob = new Blob(newRaw, { type: "text/plain;charset=utf-8" });
+
+        edited.file(fileName, blob);
+
+        
+
+      }
+    }
+
+    zip.generateAsync({ type: "blob" }).then(function (content) {
+      // Force down of the Zip file
+      saveAs(content, "archive.zip");})
+  };
 
   return (
     <div className="editFiles">
@@ -66,7 +124,7 @@ const EditFiles = ({ data, setData, selected }) => {
       ))}
       <div className="editOptions">
         <div onClick={saveChanges}>Save</div>
-        <div>Export</div>
+        <div onClick={exportFiles}>Export</div>
       </div>
     </div>
   );
