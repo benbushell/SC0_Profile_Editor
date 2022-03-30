@@ -11,7 +11,7 @@ const EditFiles = ({ data, setData, selected }) => {
           let val = Object.values(file.header)[i];
 
           if (newHeader[key] === val) {
-            null;
+            continue
           } else if (newHeader[key] === undefined) {
             newHeader[key] = val;
           } else {
