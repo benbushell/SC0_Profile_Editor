@@ -23,11 +23,9 @@ export default function App() {
           selected={selected}
           setSelected={setSelected}
         />
-        <ImportStructures
-          structures={structures}
-          setStructures={setStructures}
-        />
         <EditFiles data={data} setData={setData} selected={selected} />
+
+
       </div>
       <Footer />
     </div>

@@ -90,16 +90,20 @@ const ImportSC0 = ({ data, setData, selected, setSelected }) => {
 
   return (
     <div className="importSc0">
-      <div>
-        <div>Import SC0 Files</div>
-
-        <input
-          type="file"
-          className="custom-file-input"
-          multiple
-          onChange={handleChange}
-        />
-        <div>
+      
+        <div className = "sc0Header">
+          <label className="inputButton">
+            <input
+              type="file"
+              className="custom-file-input"
+              multiple
+              onChange={handleChange}
+            />
+            
+            Import SC0 Files
+          </label>
+        </div>
+        <div className="fileContainer">
           {data.map((file) => (
             <div key={file.uid} className="file">
               <div className="fileName" onClick={() => selectFile(file.uid)}>
@@ -122,7 +126,7 @@ const ImportSC0 = ({ data, setData, selected, setSelected }) => {
             </div>
           ))}
         </div>
-      </div>
+     
     </div>
   );
 };

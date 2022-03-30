@@ -110,6 +110,8 @@ const EditFiles = ({ data, setData, selected }) => {
 
   return (
     <div className="editFiles">
+      <div>
+      {selected.length === 0? <div>Import and select some files to edit!</div>:null}
       {Object.keys(combineFiles()).map((key, i) => (
         <div className="parameterDisplay">
           <div>{key} : </div>
@@ -122,6 +124,7 @@ const EditFiles = ({ data, setData, selected }) => {
           />
         </div>
       ))}
+      </div>
       <div className="editOptions">
         <div onClick={saveChanges}>Save</div>
         <div onClick={exportFiles}>Export</div>

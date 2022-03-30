@@ -10,28 +10,38 @@ body {
   display: flex;
   flex-direction: column;
   padding: 25px;
+  width: min-content;
 }
 
 .header {
-  border-bottom: 1px solid #939393;
+  border-bottom: 1px solid #c5c5c5;
   padding: 10px;
 }
 
 .mid {
   padding: 10px;
   display: flex;
-  justify-content: space-between;
   min-height: 100px;
 }
 
 .footer {
-  border-top: 1px solid #939393;
+  border-top: 1px solid #c5c5c5;
   padding: 10px;
 }
 
 input[type="file"] {
   color: rgba(0, 0, 0, 0);
+  margin-bottom: 10px;
+  display: none;
 }
+
+.inputButton{
+  box-shadow: 0.5px 0.5px 4px rgba(0, 0, 0, 0.25);
+  padding: 5px 15px;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
 
 .file {
   border-bottom: 1px solid #e6e6e6;
@@ -85,10 +95,22 @@ input[type="file"] {
   color: red;
 }
 
+.importSc0{
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0px;
+}
+
+.sc0Header{
+  margin-bottom: 15px;
+}
+
+
 .importStructures {
   padding: 20px;
-  flex: 1;
-  margin: 0px 50px;
+
+
   background: #ffffff;
   border: 1px solid #e6e6e6;
   box-sizing: border-box;
@@ -96,13 +118,17 @@ input[type="file"] {
 }
 
 .editFiles {
+  margin-left: 50px;
   padding: 20px;
-  flex: 1;
-
+  min-width: 280px;
+  min-height: 500px;
   background: #ffffff;
   border: 1px solid #e6e6e6;
   box-sizing: border-box;
   box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .editOptions {
@@ -114,6 +140,7 @@ input[type="file"] {
   padding: 5px 15px;
   margin-top: 20px;
   margin-right: 20px;
+  cursor: pointer;
 }
 
 .parameterDisplay {
