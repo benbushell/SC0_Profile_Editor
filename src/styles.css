@@ -148,3 +148,15 @@ input[type="file"] {
   justify-content: space-between;
   padding: 5px 0px;
 }
+
+.toolbar{
+  border-top: 1px solid #6b6b6b;
+  border-bottom: 1px solid #6b6b6b;
+  padding: 4px;
+  display: flex;
+}
+
+.toolbar div{
+  margin-right: 20px;
+
+}
