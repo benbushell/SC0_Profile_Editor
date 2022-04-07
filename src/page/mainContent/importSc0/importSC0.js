@@ -3,10 +3,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import SeletionToolbar from "./SelectionToolbar";
+import ImportCSV from "./ImportCSV";
 
-const ImportSC0 = ({ data, setData, selected, setSelected }) => {
-
-  const [selectionMode, setSelectionMode] = React.useState('multi')
+const ImportSC0 = ({ data, setData, selected, setSelected, CSV, setCSV }) => {
+  const [selectionMode, setSelectionMode] = React.useState("multi");
 
   const parseFiles = (files) => {
     const filesData = [];
@@ -17,7 +17,7 @@ const ImportSC0 = ({ data, setData, selected, setSelected }) => {
             Papa.parse(file, {
               header: false,
               complete: resolve, // Resolve each promise
-              error: reject
+              error: reject,
             })
           )
       )
@@ -55,7 +55,7 @@ const ImportSC0 = ({ data, setData, selected, setSelected }) => {
       final.push({
         uid: Math.floor(Date.now() * Math.random()),
         header: currHeader,
-        raw: file
+        raw: file,
       });
     }
 
@@ -70,17 +70,16 @@ const ImportSC0 = ({ data, setData, selected, setSelected }) => {
   };
 
   const selectFile = (id) => {
-
-    switch(selectionMode){
-      case 'single':
-        if(selected.includes(id)){
-          setSelected([])
-        }else{
-          setSelected([id])
+    switch (selectionMode) {
+      case "single":
+        if (selected.includes(id)) {
+          setSelected([]);
+        } else {
+          setSelected([id]);
         }
         break;
 
-      case 'multi':
+      case "multi":
         if (selected.includes(id)) {
           let newArr = selected.filter((currid) => currid !== id);
           setSelected(newArr);
@@ -89,9 +88,6 @@ const ImportSC0 = ({ data, setData, selected, setSelected }) => {
         }
         break;
     }
-
-
-
   };
 
   const removeFile = (id) => {
@@ -111,8 +107,8 @@ const ImportSC0 = ({ data, setData, selected, setSelected }) => {
 
   return (
     <div className="importSc0">
-      
-        <div className = "sc0Header">
+      <div>
+        <div className="sc0Header">
           <label className="inputButton">
             <input
               type="file"
@@ -120,11 +116,18 @@ const ImportSC0 = ({ data, setData, selected, setSelected }) => {
               multiple
               onChange={handleChange}
             />
-            
             Import SC0 Files
           </label>
         </div>
-        <div><SeletionToolbar selectionMode={selectionMode} setSelectionMode = {setSelectionMode} selected={selected} setSelected={setSelected} data = {data}/></div>
+        <div>
+          <SeletionToolbar
+            selectionMode={selectionMode}
+            setSelectionMode={setSelectionMode}
+            selected={selected}
+            setSelected={setSelected}
+            data={data}
+          />
+        </div>
         <div className="fileContainer">
           {data.map((file) => (
             <div key={file.uid} className="file">
@@ -148,7 +151,10 @@ const ImportSC0 = ({ data, setData, selected, setSelected }) => {
             </div>
           ))}
         </div>
-     
+      </div>
+      <div>
+        <ImportCSV CSV={CSV} setCSV={setCSV}/>
+      </div>
     </div>
   );
 };

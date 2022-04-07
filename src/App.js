@@ -12,7 +12,8 @@ export default function App() {
   const [data, setData] = React.useState([]);
   const [selected, setSelected] = React.useState([]);
   const [structures, setStructures] = React.useState([]);
-  const [selectionMode, setSelectionMode] = React.useState('single');
+  const [selectionMode, setSelectionMode] = React.useState("single");
+  const [CSV, setCSV] = React.useState([]);
 
   return (
     <div className="mainContainer">
@@ -23,10 +24,10 @@ export default function App() {
           setData={setData}
           selected={selected}
           setSelected={setSelected}
+          CSV={CSV}
+          setCSV={setCSV}
         />
         <EditFiles data={data} setData={setData} selected={selected} />
-
-
       </div>
       <Footer />
     </div>
