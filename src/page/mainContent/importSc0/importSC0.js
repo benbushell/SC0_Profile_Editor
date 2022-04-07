@@ -5,6 +5,9 @@ import ReactDOM from "react-dom";
 import SeletionToolbar from "./SelectionToolbar";
 
 const ImportSC0 = ({ data, setData, selected, setSelected }) => {
+
+  const [selectionMode, setSelectionMode] = React.useState('multi')
+
   const parseFiles = (files) => {
     const filesData = [];
     Promise.all(
@@ -67,12 +70,28 @@ const ImportSC0 = ({ data, setData, selected, setSelected }) => {
   };
 
   const selectFile = (id) => {
-    if (selected.includes(id)) {
-      let newArr = selected.filter((currid) => currid !== id);
-      setSelected(newArr);
-    } else {
-      setSelected([...selected, id]);
+
+    switch(selectionMode){
+      case 'single':
+        if(selected.includes(id)){
+          setSelected([])
+        }else{
+          setSelected([id])
+        }
+        break;
+
+      case 'multi':
+        if (selected.includes(id)) {
+          let newArr = selected.filter((currid) => currid !== id);
+          setSelected(newArr);
+        } else {
+          setSelected([...selected, id]);
+        }
+        break;
     }
+
+
+
   };
 
   const removeFile = (id) => {
@@ -105,7 +124,7 @@ const ImportSC0 = ({ data, setData, selected, setSelected }) => {
             Import SC0 Files
           </label>
         </div>
-        <div><SeletionToolbar/></div>
+        <div><SeletionToolbar selectionMode={selectionMode} setSelectionMode = {setSelectionMode} selected={selected} setSelected={setSelected} data = {data}/></div>
         <div className="fileContainer">
           {data.map((file) => (
             <div key={file.uid} className="file">

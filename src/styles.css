@@ -152,11 +152,20 @@ input[type="file"] {
 .toolbar{
   border-top: 1px solid #6b6b6b;
   border-bottom: 1px solid #6b6b6b;
-  padding: 4px;
   display: flex;
 }
 
 .toolbar div{
   margin-right: 20px;
+  cursor : pointer;
+  padding: 4px;
 
+}
+
+.toolbar div img{
+  height: 17px
+}
+
+.underline{
+  box-shadow: 0px -2px 0px black inset; 
 }
