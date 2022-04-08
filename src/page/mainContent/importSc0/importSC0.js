@@ -17,7 +17,7 @@ const ImportSC0 = ({ data, setData, selected, setSelected, CSV, setCSV }) => {
             Papa.parse(file, {
               header: false,
               complete: resolve, // Resolve each promise
-              error: reject,
+              error: reject
             })
           )
       )
@@ -55,7 +55,7 @@ const ImportSC0 = ({ data, setData, selected, setSelected, CSV, setCSV }) => {
       final.push({
         uid: Math.floor(Date.now() * Math.random()),
         header: currHeader,
-        raw: file,
+        raw: file
       });
     }
 
@@ -153,7 +153,14 @@ const ImportSC0 = ({ data, setData, selected, setSelected, CSV, setCSV }) => {
         </div>
       </div>
       <div>
-        <ImportCSV CSV={CSV} setCSV={setCSV}/>
+        <ImportCSV
+          data={data}
+          setData={setData}
+          selected={selected}
+          setSelected={setSelected}
+          CSV={CSV}
+          setCSV={setCSV}
+        />
       </div>
     </div>
   );

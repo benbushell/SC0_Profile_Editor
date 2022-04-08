@@ -1,6 +1,6 @@
 const CSVtable = ({ CSV }) => {
   return (
-    <div>
+    <div className="csvTable">
       <tr>
         {Object.keys(CSV[0]).map((key) => (
           <th>{key}</th>
