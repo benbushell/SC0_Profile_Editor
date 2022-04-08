@@ -2,8 +2,13 @@ import Papa from "papaparse";
 
 import CSVtable from "./CSVtable";
 import ApplyResults from "./ApplyResults";
+import React from "react";
+import Results from "./Results";
 
 const ImportCSV = ({ CSV, setCSV, data, setData, selected, setSelected }) => {
+
+  const [results, setResults] = React.useState()
+
   const parseCSV = (file) => {
     var csvData = [];
     Papa.parse(file, {
@@ -45,7 +50,9 @@ const ImportCSV = ({ CSV, setCSV, data, setData, selected, setSelected }) => {
         ) : (
           <div></div>
         )}
+
       </div>
+      <div>{results?<Results results={results} setResults={setResults}/>:null}</div>
       <div>{CSV.length > 0 ? <CSVtable CSV={CSV} /> : null}</div>
     </div>
   );
