@@ -1,8 +1,9 @@
 import Papa from "papaparse";
 
-import CSVtable from './CSVtable'
+import CSVtable from "./CSVtable";
+import ApplyResults from "./ApplyResults";
 
-const ImportCSV = ({ CSV, setCSV }) => {
+const ImportCSV = ({ CSV, setCSV, data, setData, selected, setSelected }) => {
   const parseCSV = (file) => {
     var csvData = [];
     Papa.parse(file, {
@@ -13,7 +14,7 @@ const ImportCSV = ({ CSV, setCSV }) => {
       complete: function (results, file) {
         console.log(csvData);
         setCSV(csvData);
-      },
+      }
     });
   };
 
@@ -23,7 +24,7 @@ const ImportCSV = ({ CSV, setCSV }) => {
 
   return (
     <div className="importCSV">
-      <div>
+      <div className="csvButtons">
         <label className="inputButton">
           <input
             type="file"
@@ -32,11 +33,20 @@ const ImportCSV = ({ CSV, setCSV }) => {
           />
           Import CSV
         </label>
+        {CSV.length > 0 ? (
+          <ApplyResults
+            data={data}
+            setData={setData}
+            selected={selected}
+            setSelected={setSelected}
+            CSV={CSV}
+            setCSV={setCSV}
+          />
+        ) : (
+          <div></div>
+        )}
       </div>
-      <div>
-          {CSV.length>0?<CSVtable CSV={CSV}/>:null}
-          
-      </div>
+      <div>{CSV.length > 0 ? <CSVtable CSV={CSV} /> : null}</div>
     </div>
   );
 };
