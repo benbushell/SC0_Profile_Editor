@@ -1,6 +1,6 @@
 import Papa from "papaparse";
 
-import CSVtable from './CSVtable'
+import CSVtable from "./CSVtable";
 
 const ImportCSV = ({ CSV, setCSV }) => {
   const parseCSV = (file) => {
@@ -13,7 +13,7 @@ const ImportCSV = ({ CSV, setCSV }) => {
       complete: function (results, file) {
         console.log(csvData);
         setCSV(csvData);
-      },
+      }
     });
   };
 
@@ -33,10 +33,7 @@ const ImportCSV = ({ CSV, setCSV }) => {
           Import CSV
         </label>
       </div>
-      <div>
-          {CSV.length>0?<CSVtable CSV={CSV}/>:null}
-          
-      </div>
+      <div>{CSV.length > 0 ? <CSVtable CSV={CSV} /> : null}</div>
     </div>
   );
 };
