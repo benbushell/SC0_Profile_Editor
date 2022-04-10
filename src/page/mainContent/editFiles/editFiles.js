@@ -1,8 +1,18 @@
 import FileSaver, { saveAs } from "file-saver";
-import JSZip from "jszip";
+import JSZip, { file } from "jszip";
+
+import React from "react";
+
+import RemoveRails from "./RemoveRails";
 
 const EditFiles = ({ data, setData, selected }) => {
   const edited = {};
+
+  const [removeRails, setRemoveRails] = React.useState(false);
+  const [railParams, setRailParams] = React.useState({
+    x: [-1.5, 1.5],
+    y: [-1, 0.2],
+  });
 
   const combineFiles = () => {
     let newHeader = {};
@@ -47,6 +57,35 @@ const EditFiles = ({ data, setData, selected }) => {
         newData.splice(j, 1, newFile);
 
         setData(newData);
+      }
+    }
+
+    if (removeRails) {
+      editOffsets();
+    }
+  };
+
+  const editOffsets = () => {
+    for (let file of data) {
+      if (selected.includes(file.uid)) {
+        let newRaw = file.raw;
+
+        console.log(file);
+
+        for (let line of newRaw) {
+          let valArr = line[0].split(" ");
+
+          if (parseInt(valArr[2]) !== 6 && parseInt(valArr[2]) !== 7) {
+            if (
+              parseFloat(valArr[0]) > parseFloat(railParams.x[0]) &&
+              parseFloat(valArr[0]) < parseFloat(railParams.x[1]) &&
+              parseFloat(valArr[1]) > parseFloat(railParams.y[0]) &&
+              parseFloat(valArr[1]) < parseFloat(railParams.y[1])
+            ) {
+              console.log(valArr);
+            }
+          }
+        }
       }
     }
   };
@@ -126,9 +165,21 @@ const EditFiles = ({ data, setData, selected }) => {
           </div>
         ))}
       </div>
-      <div className="editOptions">
-        <div onClick={saveChanges}>Save</div>
-        <div onClick={exportFiles}>Export</div>
+      <div>
+        <div>
+          <div>
+            <RemoveRails
+              removeRails={removeRails}
+              setRemoveRails={setRemoveRails}
+              railParams={railParams}
+              setRailParams={setRailParams}
+            />
+          </div>
+        </div>
+        <div className="editOptions">
+          <div onClick={saveChanges}>Save</div>
+          <div onClick={exportFiles}>Export</div>
+        </div>
       </div>
     </div>
   );
