@@ -193,3 +193,14 @@ td {
   display: flex;
   justify-content: space-between;
 }
+
+.railParams{
+  display: flex;
+  margin-top: 10px;
+}
+
+.railParams input{
+  width : 50px;
+  margin-left: 10px;
+  
+}
