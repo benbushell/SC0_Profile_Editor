@@ -69,11 +69,9 @@ const EditFiles = ({ data, setData, selected }) => {
     for (let file of data) {
       if (selected.includes(file.uid)) {
         let newRaw = file.raw;
-
-        console.log(file);
-
-        for (let line of newRaw) {
-          let valArr = line[0].split(" ");
+        
+        for (let i = newRaw.length; i>0; i--) {
+          let valArr = newRaw[i][0].split(" ");
 
           if (parseInt(valArr[2]) !== 6 && parseInt(valArr[2]) !== 7) {
             if (
@@ -82,9 +80,12 @@ const EditFiles = ({ data, setData, selected }) => {
               parseFloat(valArr[1]) > parseFloat(railParams.y[0]) &&
               parseFloat(valArr[1]) < parseFloat(railParams.y[1])
             ) {
-              console.log(valArr);
+              newRaw.splice(i,1)
+              console.log(newRaw);
+
             }
           }
+          
         }
       }
     }
